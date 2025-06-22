@@ -56,7 +56,6 @@ class Horse extends Animal {
 
 public class OOP5_Inheritance {
     public static void main(String[] args) {
-
         // Dog
         Dog dog = new Dog();
         dog.setDogSound("Barks");
