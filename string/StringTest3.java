@@ -13,5 +13,6 @@ public class StringTest3 {
         System.out.println("Replace: " + str.replace("v", "m"));
         System.out.println("StartsWith: " + str.trim().startsWith("Java"));
         System.out.println("EndsWith: " + str.trim().endsWith("Master"));
+        System.out.println("IsEmpty: " + str.isEmpty());
     }
 }
