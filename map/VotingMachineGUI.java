@@ -1,8 +1,10 @@
 package map;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.io.BufferedInputStream;
+import java.io.InputStream;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -39,6 +41,7 @@ public class VotingMachineGUI extends JFrame {
             if (!name.isEmpty()) {
                 voteCount.merge(name, 1, Integer::sum);
                 votePanel.repaint();
+                SoundPlayer.playVoteSound();
             }
         });
 
@@ -47,6 +50,36 @@ public class VotingMachineGUI extends JFrame {
             voteCount.clear();
             votePanel.repaint();
         });
+    }
+
+    private static class SoundPlayer {
+        private static Clip voteClip;
+
+        static {
+            try {
+                // Load the sound file once
+                InputStream audioSrc = VotingMachineGUI.class.getResourceAsStream("/sounds/vote.wav");
+                if (audioSrc != null) {
+                    AudioInputStream audioStream = AudioSystem.getAudioInputStream(
+                            new BufferedInputStream(audioSrc));
+                    voteClip = AudioSystem.getClip();
+                    voteClip.open(audioStream);
+                }
+            } catch (Exception e) {
+                System.err.println("Error loading sound: " + e.getMessage());
+            }
+        }
+
+        public static void playVoteSound() {
+            if (voteClip != null) {
+                // Rewind to start if already playing
+                voteClip.setFramePosition(0);
+                voteClip.start();
+            } else {
+                // Fallback to system beep
+                java.awt.Toolkit.getDefaultToolkit().beep();
+            }
+        }
     }
 
     class VotePanel extends JPanel {
@@ -74,7 +107,6 @@ public class VotingMachineGUI extends JFrame {
 
                 // Randomized color per candidate
                 g.setColor(new Color(candidate.hashCode() * 31 | 0xFF000000));
-                // g.fillRect(x, y, barLength, barHeight);
                 g.fillRoundRect(x, y, barLength, barHeight, 12, 12);
 
                 // Text label
