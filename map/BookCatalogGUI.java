@@ -4,10 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
 public class BookCatalogGUI extends JFrame {
-    private Map<String, String> bookCatalog = new LinkedHashMap<>();
+    private Map<String, String> bookCatalog = new HashMap<>();
     private JTextField isbnField, titleField;
     private BookPanel bookPanel;
 
