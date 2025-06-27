@@ -13,7 +13,7 @@ public class Roman {
         map.put('D', 500);
         map.put('M', 1000);
 
-        String s = "IV";
+        String s = "XL";
         String sb = new StringBuilder(s).reverse().toString();
         int sum = 0;
         int prev = 0;
