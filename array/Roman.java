@@ -13,19 +13,21 @@ public class Roman {
         map.put('D', 500);
         map.put('M', 1000);
 
-        String s = "LVIII";
+        String s = "IV";
+        String sb = new StringBuilder(s).reverse().toString();
         int sum = 0;
+        int prev = 0;
 
-        for (int i = 0; i < s.length(); i++) {
-            int currentVal = map.get(s.charAt(i));
-            if (i + 1 < s.length()) {
-                int nextVal = map.get(s.charAt(i + 1));
-                // sum += (nextVal - currentVal);
-                System.out.println("Yes: " + nextVal);
+        for (int i = 0; i < sb.length(); i++) {
+            char c = sb.charAt(i);
+            int current = map.get(c);
+            if (current < prev) {
+                sum -= current;
             } else {
-                sum += currentVal;
+                sum += current;
             }
 
+            prev = current;
         }
         System.out.println("Output: " + sum);
     }
