@@ -1,5 +1,6 @@
 package stream;
 
+import java.nio.file.*;
 import java.util.*;
 import java.util.stream.*;
 
@@ -24,6 +25,15 @@ public class Pattern {
 
         // Range Streams
         IntStream range = IntStream.range(1, 10);
+        IntStream rangeClosed = IntStream.rangeClosed(1, 10);
+
+        // From Files
+        // Stream<String> lines = Files.lines(Paths.get("file.txt"));
+
+        // From Regex
+        // Stream<String> words = Pattern.compile("\\s+").spliteAsStream("hello world
+        // Java");
+
         System.out.println("result: " + range);
     }
 }

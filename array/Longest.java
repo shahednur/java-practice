@@ -2,7 +2,7 @@ package array;
 
 public class Longest {
     public static void main(String[] args) {
-        String s = "abcab";
+        String s = "abcabcbb";
         String maxLength = "";
         for (int i = 0; i < s.length(); i++) {
             for (int j = i + 1; j < s.length(); j++) {
@@ -12,6 +12,6 @@ public class Longest {
                 }
             }
         }
-        System.out.println("String: " + maxLength);
+        System.out.println("String: " + maxLength.length());
     }
 }
